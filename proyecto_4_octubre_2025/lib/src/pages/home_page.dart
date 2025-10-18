@@ -13,6 +13,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Componentes'),
       ),
+      body: _lista(),
     );
   }
 
