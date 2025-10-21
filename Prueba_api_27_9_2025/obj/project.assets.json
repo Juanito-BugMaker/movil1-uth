@@ -2015,27 +2015,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\admin\\.nuget\\packages\\": {}
+    "/home/inmer/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\API\\Prueba\\Prueba.csproj",
+      "projectUniqueName": "/home/inmer/StudioProjects/movil1-uth/Prueba_api_27_9_2025/Prueba.csproj",
       "projectName": "Prueba",
-      "projectPath": "D:\\API\\Prueba\\Prueba.csproj",
-      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-      "outputPath": "D:\\API\\Prueba\\obj\\",
+      "projectPath": "/home/inmer/StudioProjects/movil1-uth/Prueba_api_27_9_2025/Prueba.csproj",
+      "packagesPath": "/home/inmer/.nuget/packages/",
+      "outputPath": "/home/inmer/StudioProjects/movil1-uth/Prueba_api_27_9_2025/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/home/inmer/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2087,7 +2084,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.415/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
