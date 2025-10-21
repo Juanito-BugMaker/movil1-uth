@@ -1,0 +1,17 @@
+# Archivos de .NET (Visual Studio)
+[Oo]bj/
+[Bb]in/
+.vs/
+*.user
+
+# Archivos de Flutter
+build/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# Archivos de VS Code
+.vscode/
+
+# Archivos del Sistema Operativo
+.DS_Store
