@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 final _icons = <String, IconData>{
   'add_alert': Icons.add_alert,
-  'accesibilidy': Icons.accessibility,
+  'accessibility': Icons.accessibility,
   'folder_open': Icons.folder_open
 };
 
