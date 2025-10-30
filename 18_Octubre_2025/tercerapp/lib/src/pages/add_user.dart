@@ -13,32 +13,50 @@ class _UserPageState extends State<AddUser> {
   final UsuarioService _usuarioService = UsuarioService();
 
   void _agregarUsuario() async {
-    try{
-   /* String usuario = _controller.text;
+    try {
+      /* String usuario = _controller.text;
     if (usuario.isNotEmpty) {
       print("Usuario agregado: $usuario");
       _controller.clear();
     } else {
       print("No se agrego ningun usuario");
     }*/
-    final usuario = Usuario(
-      id: int.parse(_idcontroller.text),
-      nombre: _nombreController.text
-    );
-    String mensaje = await _usuarioService.crearUsuario(usuario);
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(mensaje)),
+      final usuario = Usuario(
+          id: int.parse(_idcontroller.text), nombre: _nombreController.text);
+      String mensaje = await _usuarioService.crearUsuario(usuario);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(mensaje)),
       );
       _idcontroller.clear();
       _nombreController.clear();
-
-    }catch(e){
+    } catch (e) {
       print("Error: $e");
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Error al agregar el usuario")),
-        );
+      );
     }
+  }
 
+  void _actualizarUsuario() async {
+    try {
+      final usuario = Usuario(
+        id: int.parse(_idcontroller.text),
+        nombre: _nombreController.text,
+      );
+
+      String mensaje = await _usuarioService.actualizarUsuario(usuario);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(mensaje)),
+      );
+
+      _idcontroller.clear();
+      _nombreController.clear();
+    } catch (e) {
+      print("Error: $e");
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Error al actualizar el usuario")),
+      );
+    }
   }
 
   @override
@@ -52,25 +70,29 @@ class _UserPageState extends State<AddUser> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
             TextField(
               controller: _idcontroller,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 labelText: "ID del Usuario",
-
               ),
             ),
-
             TextField(
               controller: _nombreController,
               decoration: InputDecoration(
                 labelText: "Nombre del usuario",
-                //border: OutlineInputBorder(),
               ),
             ),
             SizedBox(height: 20),
-            ElevatedButton(onPressed: _agregarUsuario, child: Text("Agregar"))
+            ElevatedButton(
+              onPressed: _agregarUsuario,
+              child: Text("Agregar"),
+            ),
+            SizedBox(height: 10), // Espaciado
+            ElevatedButton(
+              onPressed: _actualizarUsuario,
+              child: Text("Actualizar"),
+            ),
           ],
         ),
       ),

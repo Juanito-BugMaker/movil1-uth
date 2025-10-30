@@ -3,8 +3,7 @@ import 'package:http/http.dart' as http;
 import '../models/usuario.dart';
 
 class UsuarioService {
-  // URL usando HTTP y el emulador
-  //final String baseUrl = "http://10.0.2.2:5238/api/Usuario";
+  // URL base de tu API
   final String baseUrl = "http://127.0.0.1:5238/api/Usuario";
 
   // Crear usuario
@@ -29,7 +28,28 @@ class UsuarioService {
     }
   }
 
-//Tarea de los chicos
+  // Actualizar usuario
+  Future<String> actualizarUsuario(Usuario usuario) async {
+    final jsonBody = jsonEncode(usuario.toJson());
+    print("Solicitud JSON (Actualizar): $jsonBody");
+
+    final response = await http.put(
+      Uri.parse("$baseUrl/${usuario.id}"),
+      headers: {"Content-Type": "application/json"},
+      body: jsonBody,
+    );
+
+    print("Codigo de estado (update): ${response.statusCode}");
+    print("Cuerpo de la solicitud (update): ${response.body}");
+
+    if (response.statusCode == 200) {
+      return "Usuario actualizado correctamente";
+    } else {
+      throw Exception(
+          "Error al actualizar usuario: ${response.statusCode} - ${response.body}");
+    }
+  }
+
   // Obtener lista de usuarios
   Future<List<Usuario>> getUsuarios() async {
     final response = await http.get(Uri.parse(baseUrl));
