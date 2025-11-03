@@ -2,25 +2,18 @@ import 'package:flutter/material.dart';
 import '../Services/usuario_service.dart';
 import '../models/usuario.dart';
 
-class AddUser extends StatefulWidget {
+class AddUserPage extends StatefulWidget {
   @override
-  _UserPageState createState() => _UserPageState();
+  _AddUserPageState createState() => _AddUserPageState();
 }
 
-class _UserPageState extends State<AddUser> {
+class _AddUserPageState extends State<AddUserPage> {
   final TextEditingController _idcontroller = TextEditingController();
   final TextEditingController _nombreController = TextEditingController();
   final UsuarioService _usuarioService = UsuarioService();
 
   void _agregarUsuario() async {
     try {
-      /* String usuario = _controller.text;
-    if (usuario.isNotEmpty) {
-      print("Usuario agregado: $usuario");
-      _controller.clear();
-    } else {
-      print("No se agrego ningun usuario");
-    }*/
       final usuario = Usuario(
           id: int.parse(_idcontroller.text), nombre: _nombreController.text);
       String mensaje = await _usuarioService.crearUsuario(usuario);
@@ -32,29 +25,7 @@ class _UserPageState extends State<AddUser> {
     } catch (e) {
       print("Error: $e");
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Error al agregar el usuario")),
-      );
-    }
-  }
-
-  void _actualizarUsuario() async {
-    try {
-      final usuario = Usuario(
-        id: int.parse(_idcontroller.text),
-        nombre: _nombreController.text,
-      );
-
-      String mensaje = await _usuarioService.actualizarUsuario(usuario);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(mensaje)),
-      );
-
-      _idcontroller.clear();
-      _nombreController.clear();
-    } catch (e) {
-      print("Error: $e");
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Error al actualizar el usuario")),
+        SnackBar(content: Text("Error al agregar el usuario: ${e.toString()}")),
       );
     }
   }
@@ -63,7 +34,7 @@ class _UserPageState extends State<AddUser> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Gestion de Usuarios"),
+        title: Text("Agregar Usuario"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -87,11 +58,6 @@ class _UserPageState extends State<AddUser> {
             ElevatedButton(
               onPressed: _agregarUsuario,
               child: Text("Agregar"),
-            ),
-            SizedBox(height: 10), // Espaciado
-            ElevatedButton(
-              onPressed: _actualizarUsuario,
-              child: Text("Actualizar"),
             ),
           ],
         ),

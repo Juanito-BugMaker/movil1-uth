@@ -61,4 +61,21 @@ class UsuarioService {
       throw Exception("Error al obtener usuarios");
     }
   }
+
+
+  // Obtener un solo usuario por ID
+  Future<Usuario> getUsuarioPorId(int id) async {
+    final response = await http.get(Uri.parse("$baseUrl/$id"));
+
+    if (response.statusCode == 200) {
+      // Decodifica el cuerpo de la respuesta que es un solo objeto JSON
+      return Usuario.fromJson(jsonDecode(response.body));
+    } else if (response.statusCode == 404) {
+      throw Exception("Usuario no encontrado");
+    } else {
+      throw Exception("Error al obtener usuario: ${response.statusCode}");
+    }
+  }
+
 }
+
