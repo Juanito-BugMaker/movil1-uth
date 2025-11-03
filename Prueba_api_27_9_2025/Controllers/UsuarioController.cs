@@ -127,6 +127,47 @@ namespace Prueba.Controllers
             return Ok("Usuario eliminado correctamente");
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetUsuarioPorId(int id)
+        {
+            Usuarios usuario = null;
+
+            using (var connection = _conexion.GetConnection())
+            {
+                await connection.OpenAsync();
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT Id, Nombre FROM Usuario WHERE Id = @id";
+
+                    var paramId = command.CreateParameter();
+                    paramId.ParameterName = "@id";
+                    paramId.Value = id;
+                    command.Parameters.Add(paramId);
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        // Verificamos si hay una fila para leer
+                        if (await reader.ReadAsync())
+                        {
+                            usuario = new Usuarios
+                            {
+                                Id = reader.GetInt32(0),
+                                Nombre = reader.GetString(1)
+                            };
+                        }
+                    }
+                }
+            }
+
+            // Si no se encontró ningún usuario con ese ID, devolvemos 404
+            if (usuario == null)
+            {
+                return NotFound($"No se encontró un usuario con Id {id}");
+            }
+
+            // Si se encontró, devolvemos el usuario con 200 OK
+            return Ok(usuario);
+        }
 
     }
 }
