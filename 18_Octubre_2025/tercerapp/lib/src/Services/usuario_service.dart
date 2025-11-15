@@ -77,5 +77,23 @@ class UsuarioService {
     }
   }
 
+  // Eliminar un usuario por ID
+  Future<String> deleteUsuario(int id) async {
+    final response = await http.delete(
+      Uri.parse("$baseUrl/$id"),
+    );
+
+    print("Codigo de estado (delete): ${response.statusCode}");
+    print("Cuerpo de la solicitud (delete): ${response.body}");
+
+    if (response.statusCode == 200 || response.statusCode == 204) {
+      return "Usuario eliminado correctamente";
+    } else if (response.statusCode == 404) {
+      throw Exception("Usuario no encontrado para eliminar");
+    } else {
+      throw Exception("Error al eliminar usuario: ${response.statusCode}");
+    }
+  }
+
 }
 

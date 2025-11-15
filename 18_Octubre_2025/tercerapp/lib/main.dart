@@ -3,6 +3,7 @@ import 'src/pages/home_page.dart';
 import 'src/pages/add_user_page.dart';
 import 'src/pages/update_user_page.dart';
 import 'src/pages/view_users_page.dart';
+import 'src/pages/delete_user_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         '/add': (context) => AddUserPage(),
         '/update': (context) => UpdateUserPage(),
         '/view': (context) => ViewUsersPage(),
+        '/delete': (context) => DeleteUserPage(),
       },
     );
   }

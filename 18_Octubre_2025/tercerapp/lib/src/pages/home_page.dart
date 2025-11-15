@@ -34,6 +34,17 @@ class HomePage extends StatelessWidget {
                   Navigator.pushNamed(context, '/view');
                 },
               ),
+              SizedBox(height: 12),
+              ElevatedButton(
+                child: Text('Eliminar Usuario'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red[700], // Color rojo eliminar
+                  foregroundColor: Colors.white,
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/delete');
+                },
+              ),
             ],
           ),
         ),
